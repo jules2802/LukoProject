@@ -12,8 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.unbescape.html.HtmlEscape.escapeHtml5;
-import static org.unbescape.html.HtmlEscape.escapeHtml5Xml;
-import static sun.text.normalizer.Utility.escape;
+
 
 @WebServlet("/results")
 public class ResultsServlet extends CreateTemplateEngine {
