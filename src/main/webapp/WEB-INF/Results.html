@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+ <html xmlns:th="http://www.thymeleaf.org" lang="fr">
+   <head>
+        <title>Results</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html;charset=utf8" />
+        <link rel="stylesheet" type="text/css" href="/css/Results.css">
+
+   </head>
+   <body id="results">
+        <div id="background">
+         <h1>Bonjour</h1>
+         <h2 >Vous &ecirc;tes dans la commune de [[${commune}]] (code INSEE: [[${codeInsee}]])</h2>
+
+        <div class="table">
+         <!-- table for the 4 kind of risks-->
+       <table id="earth">
+            <tr class="resultat">
+                 <th>Earth risks</th>
+            </tr>
+            <tr th:each="earthRisks : ${earthRisks}" >
+                 <td th:utext="${earthRisks}"></td>
+                 <td th:utext="${earthRisksNumber[earthRisksStat.index]==0}?'':${earthRisksNumber[earthRisksStat.index]}+'/10'"/>
+             </tr>
+             <tr class="strong">
+                 <td th:utext="${earthTotal== 0}? '' : 'Voici le total des risques de mouvements de terrains:'"></td>
+                 <td th:text="${earthTotal== 0}? '' : ${earthTotal}"></td>
+             </tr>
+
+       </table>
+       <table id="flood">
+            <tr>
+                 <th>Flood risks</th>
+            </tr>
+            <tr th:each="floodRisks : ${floodRisks}"  >
+                 <td th:utext="${floodRisks}"></td>
+                 <td th:utext="${floodRisksNumber[floodRisksStat.index]==0}?'':${floodRisksNumber[floodRisksStat.index]}+'/10'"/>
+            </tr>
+            <tr class="strong">
+                <td th:utext="${floodTotal== 0}? '' : 'Voici le total des risques d\'innondations:'"></td>
+                <td th:text="${floodTotal== 0}? '' : ${floodTotal}"></td>
+            </tr>
+       </table>
+       <table id="pollution">
+          <tr>
+                <th>Pollution risks</th>
+          </tr>
+          <tr th:each="pollutionRisks : ${pollutionRisks}">
+                <td th:utext="${pollutionRisks}"></td>
+                <td th:utext="${pollutionRisksNumber[pollutionRisksStat.index]==0}?'':${pollutionRisksNumber[pollutionRisksStat.index]}+'/10'"/>
+          </tr>
+          <tr class="strong">
+                <td th:utext="${pollutionTotal== 0}? '' : 'Voici le total des risques de pollutions:'"></td>
+                <td th:text="${pollutionTotal== 0}? '' : ${pollutionTotal}"></td>
+          </tr>
+
+       </table>
+       <table id="industrial">
+          <tr>
+                <th>Industrial risks</th>
+          </tr>
+          <tr th:each="industrialRisks : ${industrialRisks}">
+                <td th:utext="${industrialRisks}"></td>
+                <td th:utext=" ${industrialRisksNumber[industrialRisksStat.index]==0}?'':${industrialRisksNumber[industrialRisksStat.index]}+'/10'"/>
+           <!-- get info here-->
+          </tr>
+          <tr class="strong">
+                <td th:utext="${industrialTotal== 0}? '' : 'Voici le total des risques industriels:'"></td>
+                <td th:text="${industrialTotal== 0}? '' : ${industrialTotal}"></td>
+          </tr>
+        </table>
+
+       </div>
+       <div id="googleMap" >
+                      <script>
+                               function myMap() {
+                                        var mapProp= {
+                                        center:new google.maps.LatLng([[${latitude}]],[[${longitude}]]),
+                                        zoom:15,
+                                         };
+
+                               var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+                               var marker = new google.maps.Marker({position:map.center});
+                               marker.setMap(map);
+                               }
+                               </script>
+                               <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCePyS1fNGyH3nATI64HfZMuMLzvRlLJ-k&callback=myMap"></script>
+                           </div>
+       </div>
+
+   </body>
+ </html>
+
