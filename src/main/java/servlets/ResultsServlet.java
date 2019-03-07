@@ -140,7 +140,4 @@ public class ResultsServlet extends CreateTemplateEngine {
 
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
-    }
 }

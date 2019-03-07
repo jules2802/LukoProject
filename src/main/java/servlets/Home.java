@@ -47,8 +47,7 @@ public class Home extends  CreateTemplateEngine {
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", "CHROME");
         int responseCode = con.getResponseCode();
-        System.out.println("\nSending 'GET' request to URL : " + urlINDEE);
-        System.out.println("Response Code : " + responseCode);
+
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(con.getInputStream()));
         String inputLine;
@@ -57,8 +56,7 @@ public class Home extends  CreateTemplateEngine {
             response.append(inputLine);
         }
         in.close();
-        //print in String
-        System.out.println(response.toString());
+
         String codeInsee="",commune="";
 
         JSONParser parse = new JSONParser();
@@ -86,9 +84,6 @@ public class Home extends  CreateTemplateEngine {
         riskConnection.setRequestProperty("User-Agent", "CHROME");
         int responseCodeRisks = riskConnection.getResponseCode();
 
-        System.out.println("\nSending 'GET' request to URL : " + urlRisks);
-        System.out.println("Response Code : " + responseCodeRisks);
-
         BufferedReader risksBuffer = new BufferedReader(
                 new InputStreamReader(riskConnection.getInputStream()));
         String inputLineRisks;
@@ -98,8 +93,6 @@ public class Home extends  CreateTemplateEngine {
             responseRisks.append(inputLineRisks);
         }
         risksBuffer.close();
-        //print in String
-        System.out.println(responseRisks.toString());
 
         //List of risks
         ArrayList<String> risksList= new ArrayList<>();
@@ -112,10 +105,7 @@ public class Home extends  CreateTemplateEngine {
             if (a instanceof JSONObject) {
                 Object element = ((JSONObject) a).get("libRisqueLong");
                 risksList.add(element.toString());
-
-                System.out.println(element.toString());
-                System.out.println(element.toString().getBytes(StandardCharsets.UTF_8));
-            }
+}
         }
 
 

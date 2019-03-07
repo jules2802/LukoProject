@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<?xml version="1.0" encoding="UTF-8"?>
+<head>
+   <link href="../css/Results.css" rel="stylesheet">
+   <script src="../js/Home.js" type="application/javascript"></script>
+  <meta charset="UTF-8">
+  <title>Rapport de risque</title>
+</head>
+<body id="home">
+    <div class="body">
+        <div>
+            <p class="text">Rentrer votre position GPS pour obtenir vos risques</p>
+        </div>
+        <form id="info" method="post">
+         <ul style="list-style-type:none">
+              <li class="champ">
+                <label for="longitude">Longitude</label>
+                <input type="text" name="longitude" id="longitude">
+              </li>
+              <li class="champ">
+                <label for="lattitude">Lattitude</label>
+                <input type="text"  name="latitude" id="latitude">
+              </li>
+              <li>
+                <input name="connexion" type="submit" value="soumettre" id="submit">
+              </li>
+            </ul>
+        </form>
+    </div>
+</body>
+</html>
