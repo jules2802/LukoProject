@@ -19,7 +19,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-@WebServlet("/accueil")
+@WebServlet("")
 public class Home extends  CreateTemplateEngine {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
