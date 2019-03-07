@@ -33,11 +33,12 @@ public class Home extends  CreateTemplateEngine {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        //TODO rajouter un try and catch qui prends tout les requetes
-        //Get data
+
+        //Get data from form
         String longitude= req.getParameter("longitude");
         String latitude= req.getParameter("latitude");
 
+        //Launched first request to get insee code
         String urlINDEE="http://www.georisques.gouv.fr/webappReport/ws/insee/commune/_search?lon="+longitude+"&lat="
         +latitude;
 
@@ -46,8 +47,12 @@ public class Home extends  CreateTemplateEngine {
         // optional default is GET
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", "CHROME");
-        int responseCode = con.getResponseCode();
 
+        //check code response
+        int responseCode = con.getResponseCode();
+        System.out.println(responseCode);
+
+        //read stream
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(con.getInputStream()));
         String inputLine;
@@ -75,11 +80,10 @@ public class Home extends  CreateTemplateEngine {
            }
 
 
-        //send request to get risks
+        //send request to get risks linked to insee code
         String urlRisks="http://www.georisques.gouv.fr/webappReport/ws/gasparv2/risqueDetail/"+codeInsee;
         URL risks = new URL(urlRisks);
         HttpURLConnection riskConnection = (HttpURLConnection) risks.openConnection();
-        // optional default is GET
         riskConnection.setRequestMethod("GET");
         riskConnection.setRequestProperty("User-Agent", "CHROME");
         int responseCodeRisks = riskConnection.getResponseCode();
@@ -97,7 +101,7 @@ public class Home extends  CreateTemplateEngine {
         //List of risks
         ArrayList<String> risksList= new ArrayList<>();
     try{
-        //Read JSON response and and get codeInsee
+        //Read JSON response and and get all risks
         Object jsonRisks = parse.parse(responseRisks.toString());
         JSONArray jsonRisksObject = (JSONArray) jsonRisks;
 

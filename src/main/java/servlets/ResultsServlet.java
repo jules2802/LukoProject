@@ -22,10 +22,10 @@ public class ResultsServlet extends CreateTemplateEngine {
         //Launch page
         WebContext context = new WebContext(req, resp, req.getServletContext());
 
-        //List with accents
+        //List of risks
         ArrayList<String> listRisks = (ArrayList<String>) req.getSession().getAttribute("risksList");
 
-        //List depends of risk type
+        //List depending of risk type
         ArrayList<String> floodRisks = new ArrayList<>();
         ArrayList<String> industrialRisks = new ArrayList<>();
         ArrayList<String> earthRisks = new ArrayList<>();
@@ -37,7 +37,7 @@ public class ResultsServlet extends CreateTemplateEngine {
         ArrayList<String> earthRisksNumber = new ArrayList<>();
         ArrayList<String> pollutionRisksNumber = new ArrayList<>();
 
-        //total risk
+        //total risk by kind
         int floodTotal=0;
         int earthTotal=0;
         int industrialTotal=0;
@@ -97,6 +97,7 @@ public class ResultsServlet extends CreateTemplateEngine {
             }
 
         }
+        //put something in list if list was null
            if(floodRisks.size()==0 || floodRisksNumber.size()==0){
                     floodRisks.add("Lucky you! Ton adresse n'a pas de risques d'innondations");
                     floodRisksNumber.add("0");}
